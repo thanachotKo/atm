@@ -2,11 +2,11 @@ package th.ac.ku.atm.model;
 
 public class BankAccount {
     private int id;
-    private int customerId;
+    private String customerId;
     private String type;
     private double balance;
 
-    public BankAccount(int id, int customerId, String type, double balance) {
+    public BankAccount(int id, String customerId, String type, double balance) {
         this.id = id;
         this.customerId = customerId;
         this.type = type;
@@ -17,7 +17,7 @@ public class BankAccount {
         return id;
     }
 
-    public int getCustomerIdBank() {
+    public String getCustomerIdBank() {
         return customerId;
     }
 
@@ -37,7 +37,7 @@ public class BankAccount {
         this.id = id;
     }
 
-    public void setCustomerIdBank(int customerId) {
+    public void setCustomerIdBank(String customerId) {
         this.customerId = customerId;
     }
 
