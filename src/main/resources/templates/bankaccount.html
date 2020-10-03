@@ -3,32 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <title>BankAccount</title>
+    <link th:rel="stylesheet" th:href="@{css/bootstrap.min.css}">
 </head>
 <body>
+
+<div class="container">
+
 
 <h1>Register BankAccount</h1>
 <form th:action="@{/bankaccount}" method="POST">
 
-    <label for="inputId">Id</label>
-    <input type="input" name="id" id="inputId">
+    <div class="from-group">
+        <label for="inputId">Id</label>
+        <input type="input" class="form-control" name="id" id="inputId">
+    </div>
 
-    <label for="inputCustomerId">CustomerId</label>
-    <input type="input" name="customerId" id="inputCustomerId">
+    <div class="from-group">
+        <label for="inputCustomerId">CustomerId</label>
+        <input type="input" class="form-control" name="customerId" id="inputCustomerId">
+    </div>
 
-    <label for="inputType">Type</label>
-    <input type="input" name="type" id="inputType">
+    <div class="from-group">
+        <label for="inputType">Type</label>
+        <input type="input" class="form-control" name="type" id="inputType">
+    </div>
 
-    <label for="inputBalance">Balance</label>
-    <input type="input" name="balance" id="inputBalance">
+    <div class="from-group">
+        <label for="inputBalance">Balance</label>
+        <input type="input" class="form-control" name="balance" id="inputBalance">
+    </div>
 
-    <input type="submit">
+    <div class="from-group">
+        <input type="submit" class="btn btn-primary">
+    </div>
+
 </form>
 <hr>
 
 <h1>All BankAccount</h1>
 
-<table border="1px">
-    <thead>
+<table class="table">
+    <thead class="thead-light">
     <tr>
         <th>Id</th>
         <th>CustomerId</th>
@@ -37,14 +52,15 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each = "bankaccount : ${allBankAccounts}">
-        <td th:text = "${bankaccount.id}"></td>
-        <td th:text = "${bankaccount.customerId}"></td>
-        <td th:text = "${bankaccount.type}"></td>
-        <td th:text = "${bankaccount.balance}"></td>
-    </tr>
+        <tr th:each = "bankaccount : ${allBankAccounts}">
+            <td th:text = "${bankaccount.id}"></td>
+            <td th:text = "${bankaccount.customerId}"></td>
+            <td th:text = "${bankaccount.type}"></td>
+            <td th:text = "${bankaccount.balance}"></td>
+        </tr>
     </tbody>
 </table>
+</div>
 
 </body>
 </html>
