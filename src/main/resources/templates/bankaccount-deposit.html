@@ -6,7 +6,7 @@
 <div class="container" layout:fragment="content">
     <h1>Edit Bank Account</h1>
     <form
-            th:action="@{/bankaccount/edit/{id}(id=${bankAccount.id})}"
+            th:action="@{/bankaccount/deposit/{id}(id=${bankAccount.id})}"
             th:object="${bankAccount}"
             method="POST">
 
@@ -27,7 +27,12 @@
 
         <div class="form-group">
             <label for="inputBalance">Balance</label>
-            <input type="text" th:field="*{balance}" class="form-control" id="inputBalance">
+            <input disabled type="text" th:field="*{balance}" class="form-control" id="inputBalance">
+        </div>
+
+        <div class="form-group">
+            <label for="inputDepositOrWithdraw">Number for deposit or withdraw</label>
+            <input type="text" class="form-control" id="inputDepositOrWithdraw">
         </div>
 
         <div class="form-group">
