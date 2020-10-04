@@ -4,9 +4,9 @@
       xmlns:th="https://www.thymeleaf.org">
 
 <div class="container" layout:fragment="content">
-    <h1>Deposit Bank Account</h1>
+    <h1>Withdraw Bank Account</h1>
     <form
-            th:action="@{/bankaccount/deposit/{id}(id=${bankAccount.id})}"
+            th:action="@{/bankaccount/withdraw/{id}(id=${bankAccount.id})}"
             th:object="${bankAccount}"
             method="POST">
 

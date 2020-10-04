@@ -29,22 +29,44 @@ public class BankAccountController {
         return "redirect:bankaccount";
     }
 
-    @GetMapping("/edit/{id}")
-    public String getEditBankAccountPage(@PathVariable int id, Model model) {
+    @GetMapping("/deposit/{id}")
+    public String getDepositBankAccountPage(@PathVariable int id, Model model) {
         BankAccount account = accountService.getBankAccount(id);
         model.addAttribute("bankAccount", account);
-        return "bankaccount-edit";
+        return "bankaccount-deposit";
     }
 
-    @PostMapping("/edit/{id}")
-    public String editAccount(@PathVariable int id,
+    @GetMapping("/withdraw/{id}")
+    public String getWithdrawBankAccountPage(@PathVariable int id, Model model) {
+        BankAccount account = accountService.getBankAccount(id);
+        model.addAttribute("bankAccount", account);
+        return "bankaccount-withdraw";
+    }
+
+    @PostMapping("/deposit/{id}")
+    public String depositAccount(@PathVariable int id,
                               @ModelAttribute BankAccount bankAccount,
                               Model model) {
-
-        accountService.editBankAccount(bankAccount);
-        model.addAttribute("bankaccounts",accountService.getBankAccounts());
+        accountService.depositBankAccount(bankAccount, accountService.getBankAccount(id).getBalance());
+        model.addAttribute("bankaccounts", accountService.getBankAccounts());
         return "redirect:/bankaccount";
     }
 
+    @PostMapping("/withdraw/{id}")
+    public String withdrawAccount(@PathVariable int id,
+                              @ModelAttribute BankAccount bankAccount,
+                              Model model) {
+        accountService.withDrawBankAccount(bankAccount, accountService.getBankAccount(id).getBalance());
+        model.addAttribute("bankaccounts", accountService.getBankAccounts());
+        return "redirect:/bankaccount";
+    }
 
+    @PostMapping("/delete/{id}")
+    public String deleteAccount(@PathVariable int id,
+                                @ModelAttribute BankAccount bankAccount,
+                                Model model) {
+        accountService.deleteBankAccount(bankAccount);
+        model.addAttribute("bankaccounts", accountService.getBankAccounts());
+        return "redirect:/bankaccount";
+    }
 }

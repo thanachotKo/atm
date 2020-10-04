@@ -13,6 +13,8 @@ public class BankAccountService {
 
     private RestTemplate restTemplate;
 
+    private BankAccountService accountService;
+
     public BankAccountService(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
@@ -51,10 +53,31 @@ public class BankAccountService {
         return response.getBody();
     }
 
-    public void editBankAccount(BankAccount bankAccount) {
+    public void depositBankAccount(BankAccount bankAccount, double number) {
         String url = "http://localhost:8091/api/bankaccount/" +
                 bankAccount.getId();
+        double total = bankAccount.getBalance() + number;
+        bankAccount.setBalance(total);
         restTemplate.put(url, bankAccount);
     }
 
+    public void withDrawBankAccount(BankAccount bankAccount, double number) {
+        String url = "http://localhost:8091/api/bankaccount/" +
+                bankAccount.getId();
+        double total = 0;
+        if (bankAccount.getBalance() > number) {
+            total = bankAccount.getBalance() - number;
+        }
+        else {
+            total = number - bankAccount.getBalance();
+        }
+        bankAccount.setBalance(total);
+        restTemplate.put(url, bankAccount);
+    }
+
+    public void deleteBankAccount(BankAccount bankAccount) {
+        String url = "http://localhost:8091/api/bankaccount/" +
+                bankAccount.getId();
+        restTemplate.delete(url, bankAccount);
+    }
 }
